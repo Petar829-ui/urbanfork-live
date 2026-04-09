@@ -182,7 +182,7 @@ const ReservationSection = () => {
 
           <button
             type="submit"
-            className="w-full bg-primary text-primary-foreground py-4 rounded-full text-base font-semibold font-body hover:opacity-90 transition-opacity mt-2"
+            className="w-full bg-primary text-primary-foreground py-4 rounded-full text-base font-semibold font-body hover:bg-[#C25416] active:bg-[#D97724] active:text-background hover:text-[#C0C0C0] transition-opacity hover:-translate-y-0.5 active:-translate-y-0 transition-transform duration-200 mt-2"
           >
             Reserve Table
           </button>

@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import interiorImg from "@/assets/gallery-interior.jpg";
 
 const AboutSection = () => (
-  <section id="about" className="py-20 md:py-28 bg-secondary/50">
-    <div className="container mx-auto px-4">
+  <section id="about" className="py-20 md:py-28 bg-secondary/70">
+    <div className="container mx-auto px-4 py-4 rounded-[20px]">
       <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -30 }}

@@ -4,42 +4,43 @@ import burgerImg from "@/assets/food-burger.jpg";
 import pastaImg from "@/assets/food-pasta.jpg";
 import saladImg from "@/assets/food-salad.jpg";
 import drinksImg from "@/assets/food-drinks.jpg";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const categories = [
   {
     name: "Burgers",
     image: burgerImg,
     items: [
-      { name: "Classic Smash Burger", price: "14.90", desc: "Double patty, aged cheddar, caramelized onions" },
-      { name: "Truffle Burger", price: "18.50", desc: "Truffle aioli, swiss cheese, arugula" },
-      { name: "BBQ Bacon Beast", price: "16.90", desc: "Smoky BBQ sauce, crispy bacon, jalapeños" },
+      { name: "Classic Smash Burger", price: "7.60", desc: "Double patty, aged cheddar, caramelized onions" },
+      { name: "Truffle Burger", price: "9.50", desc: "Truffle aioli, swiss cheese, arugula" },
+      { name: "BBQ Bacon Beast", price: "8.65", desc: "Smoky BBQ sauce, crispy bacon, jalapeños" },
     ],
   },
   {
     name: "Pasta",
     image: pastaImg,
     items: [
-      { name: "Spaghetti Bolognese", price: "13.50", desc: "Slow-cooked beef ragù, parmesan" },
-      { name: "Truffle Carbonara", price: "15.90", desc: "Guanciale, egg yolk, black truffle" },
-      { name: "Pesto Linguine", price: "12.90", desc: "Fresh basil pesto, pine nuts, cherry tomatoes" },
+      { name: "Spaghetti Bolognese", price: "6.90", desc: "Slow-cooked beef ragù, parmesan" },
+      { name: "Truffle Carbonara", price: "8.15", desc: "Guanciale, egg yolk, black truffle" },
+      { name: "Pesto Linguine", price: "6.50", desc: "Fresh basil pesto, pine nuts, cherry tomatoes" },
     ],
   },
   {
     name: "Salads",
     image: saladImg,
     items: [
-      { name: "Mediterranean Bowl", price: "11.90", desc: "Feta, olives, avocado, cherry tomatoes" },
-      { name: "Caesar Salad", price: "10.50", desc: "Grilled chicken, croutons, parmesan dressing" },
-      { name: "Quinoa Power Bowl", price: "12.50", desc: "Roasted veggies, hummus, tahini drizzle" },
+      { name: "Mediterranean Bowl", price: "6.10", desc: "Feta, olives, avocado, cherry tomatoes" },
+      { name: "Caesar Salad", price: "5.40", desc: "Grilled chicken, croutons, parmesan dressing" },
+      { name: "Quinoa Power Bowl", price: "6.40", desc: "Roasted veggies, hummus, tahini drizzle" },
     ],
   },
   {
     name: "Drinks",
     image: drinksImg,
     items: [
-      { name: "Urban Mule", price: "9.50", desc: "Vodka, ginger beer, lime, rosemary" },
-      { name: "Craft Lemonade", price: "5.90", desc: "Fresh lemon, elderflower, sparkling water" },
-      { name: "Espresso Martini", price: "10.90", desc: "Vodka, espresso, coffee liqueur" },
+      { name: "Urban Mule", price: "4.90", desc: "Vodka, ginger beer, lime, rosemary" },
+      { name: "Craft Lemonade", price: "3.00", desc: "Fresh lemon, elderflower, sparkling water" },
+      { name: "Espresso Martini", price: "5.60", desc: "Vodka, espresso, coffee liqueur" },
     ],
   },
 ];
@@ -49,16 +50,21 @@ const MenuSection = () => {
   const cat = categories[active];
 
   return (
-    <section id="menu" className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="menu" className="py-20 md:py-28 bg-[#1a1209]">
+      <div className="container mx-auto px-4 p-4 md:border border-[#c8a97e]/30 rounded-lg">
+      <div className="p-2 border border-[#c8a97e]/15 rounded-lg">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-2 font-body">Our Menu</p>
-          <h2 className="text-4xl md:text-5xl font-bold font-display text-foreground">Taste the Difference</h2>
+          <h2 className="text-5xl md:text-7xl font-display font-bold text-[#e8d5b5] italic tracking-wide">Our Menu</h2>
+          <div className="flex items-center justify-center gap-4 mt-4">
+            <span className="block w-16 h-px bg-[#c8a97e]/50" />
+            <span className="text-[#c8a97e] text-sm font-body uppercase tracking-[0.3em]">Urban </span> <span className="text-primary text-sm font-bold uppercase tracking-[0.3em]">Fork</span>
+            <span className="block w-16 h-px bg-[#c8a97e]/50" />
+          </div>
         </motion.div>
 
         <div className="flex justify-center gap-2 md:gap-4 mb-12 flex-wrap">
@@ -76,6 +82,7 @@ const MenuSection = () => {
             </button>
           ))}
         </div>
+        <div className="w-[450px] h-px bg-[#c8a97e]/40 mx-auto mb-6" />
 
         <motion.div
           key={active}
@@ -98,17 +105,21 @@ const MenuSection = () => {
             {cat.items.map((item) => (
               <div
                 key={item.name}
-                className="bg-card rounded-xl p-5 shadow-card hover:shadow-elevated transition-shadow duration-300"
+                className="bg-foreground rounded-xl p-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]
+hover:shadow-[0_10px_16px_rgba(0,0,0,0.15)]
+  transition-shadow duration-300 hover:-translate-y-0.5 transition-transform duration-200"
               >
                 <div className="flex justify-between items-start mb-1">
-                  <h3 className="font-display text-lg font-semibold text-foreground">{item.name}</h3>
-                  <span className="text-primary font-bold font-body text-lg">{item.price} лв</span>
+                  <h3 className="font-display text-lg font-semibold text-[#e8d5b5] italic tracking-wide">{item.name}</h3>
+                  <span className="flex-1 border-b border-dotted border-[#c8a97e]/30 min-w-[20px] translate-y-[15px]" />
+                  <span className="text-[#e8d5b5] font-bold font-body text-lg">{item.price} euro</span>
                 </div>
-                <p className="text-muted-foreground text-sm font-body">{item.desc}</p>
+                <p className="text-[#e8d5b5]/60 text-sm font-body">{item.desc}</p>
               </div>
             ))}
           </div>
         </motion.div>
+        </div>
       </div>
     </section>
   );

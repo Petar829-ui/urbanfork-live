@@ -21,7 +21,7 @@ const HeroSection = () => (
         transition={{ duration: 0.8 }}
         className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-4 leading-tight"
       >
-        Urban Fork
+        Urban <span className="text-primary">Fork</span>
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
@@ -39,13 +39,13 @@ const HeroSection = () => (
       >
         <a
           href="#menu"
-          className="bg-primary text-primary-foreground px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-opacity"
+          className="bg-primary text-primary-foreground px-8 py-4 rounded-full text-base font-semibold hover:bg-[#C25416] active:bg-[#D97724] active:text-background hover:text-[#C0C0C0] transition-opacity hover:-translate-y-0.5 active:-translate-y-0 transition-transform duration-200"
         >
           Explore Menu
         </a>
         <a
           href="#contact"
-          className="border-2 border-primary-foreground/40 text-primary-foreground px-8 py-4 rounded-full text-base font-semibold hover:bg-primary-foreground/10 transition-colors"
+          className="border-2 border-primary-foreground/40 text-primary-foreground px-8 py-4 rounded-full text-base font-semibold hover:bg-primary-foreground/10 hover:text-[#C0C0C0] active:text-white active:bg-primary-foreground/40 transition-colors hover:opacity-90 transition-opacity hover:-translate-y-0.5 active:-translate-y-0 transition-transform duration-200"
         >
           Reserve Table
         </a>

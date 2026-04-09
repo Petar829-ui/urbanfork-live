@@ -57,7 +57,7 @@ const ContactSection = () => (
 
           <a
             href="tel:+35929876543"
-            className="inline-block bg-primary text-primary-foreground px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-opacity font-body"
+            className="inline-block bg-primary text-primary-foreground px-8 py-4 rounded-full text-base font-semibold font-body hover:bg-[#C25416] active:bg-[#D97724] active:text-background hover:text-[#C0C0C0] transition-opacity hover:-translate-y-0.5 active:-translate-y-0 transition-transform duration-200"
           >
             Reserve Table
           </a>

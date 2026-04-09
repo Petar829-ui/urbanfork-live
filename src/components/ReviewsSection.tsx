@@ -45,6 +45,7 @@ const defaultReviews: Review[] = [
 const ReviewsSection = () => {
   const [reviews, setReviews] = useState<Review[]>(defaultReviews);
   const [showForm, setShowForm] = useState(false);
+  const [showAllReviews, setShowAllReviews] = useState(false);
   const [newName, setNewName] = useState("");
   const [newText, setNewText] = useState("");
   const [newRating, setNewRating] = useState(5);
@@ -52,17 +53,26 @@ const ReviewsSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!newName.trim() || !newText.trim()) {
       toast.error("Please fill in your name and review.");
       return;
     }
-    setReviews([{ name: newName.trim(), rating: newRating, text: newText.trim() }, ...reviews]);
+
+    setReviews([
+      { name: newName.trim(), rating: newRating, text: newText.trim() },
+      ...reviews,
+    ]);
+
     toast.success("Thank you for your review!");
     setNewName("");
     setNewText("");
     setNewRating(5);
     setShowForm(false);
   };
+
+  const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 6);
+  const hasMoreReviews = reviews.length > 6;
 
   return (
     <section id="reviews" className="py-20 md:py-28 bg-secondary/50">
@@ -76,9 +86,11 @@ const ReviewsSection = () => {
           <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-2 font-body">
             Testimonials
           </p>
+
           <h2 className="text-4xl md:text-5xl font-bold font-display text-foreground mb-6">
             What Our Guests Say
           </h2>
+
           <button
             onClick={() => setShowForm(!showForm)}
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-semibold font-body hover:opacity-90 transition-opacity"
@@ -99,7 +111,9 @@ const ReviewsSection = () => {
             >
               <div className="bg-card rounded-2xl p-6 shadow-elevated space-y-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-foreground font-body">Your Name</label>
+                  <label className="text-sm font-semibold text-foreground font-body">
+                    Your Name
+                  </label>
                   <input
                     type="text"
                     value={newName}
@@ -111,7 +125,9 @@ const ReviewsSection = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-foreground font-body">Rating</label>
+                  <label className="text-sm font-semibold text-foreground font-body">
+                    Rating
+                  </label>
                   <div className="flex gap-1">
                     {[1, 2, 3, 4, 5].map((s) => (
                       <button
@@ -136,7 +152,9 @@ const ReviewsSection = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-foreground font-body">Your Review</label>
+                  <label className="text-sm font-semibold text-foreground font-body">
+                    Your Review
+                  </label>
                   <textarea
                     value={newText}
                     onChange={(e) => setNewText(e.target.value)}
@@ -149,7 +167,7 @@ const ReviewsSection = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-primary text-primary-foreground py-3 rounded-full text-sm font-semibold font-body hover:opacity-90 transition-opacity"
+                  className="w-full bg-primary text-primary-foreground py-3 rounded-full text-sm font-semibold font-body hover:bg-[#C25416] active:bg-[#D97724] active:text-background hover:text-[#C0C0C0] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Submit Review
                 </button>
@@ -159,7 +177,7 @@ const ReviewsSection = () => {
         </AnimatePresence>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {reviews.map((r, i) => (
+          {visibleReviews.map((r, i) => (
             <motion.div
               key={`${r.name}-${i}`}
               initial={{ opacity: 0, y: 20 }}
@@ -177,13 +195,26 @@ const ReviewsSection = () => {
                   />
                 ))}
               </div>
+
               <p className="text-muted-foreground font-body text-sm leading-relaxed mb-4">
                 "{r.text}"
               </p>
+
               <p className="font-display font-semibold text-foreground">{r.name}</p>
             </motion.div>
           ))}
         </div>
+
+        {hasMoreReviews && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={() => setShowAllReviews(!showAllReviews)}
+              className="inline-flex items-center gap-2 bg-primary text-background px-6 py-3 rounded-full text-sm font-semibold font-body hover:opacity-90 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              {showAllReviews ? "Show Less" : `+ ${reviews.length - 6} More Reviews`}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
