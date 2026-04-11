@@ -4,7 +4,10 @@ import burgerImg from "@/assets/food-burger.jpg";
 import pastaImg from "@/assets/food-pasta.jpg";
 import saladImg from "@/assets/food-salad.jpg";
 import drinksImg from "@/assets/food-drinks.jpg";
-import heroBg from "@/assets/hero-bg.jpg";
+import MenuBg from "@/assets/MenuTableBG.jpg";
+import BurgerIcon from "@/assets/burger-icon.svg";
+import DrinkIcon from "@/assets/drink-icon.svg";
+import PastaIcon from "@/assets/pasta-icon.svg";
 
 const categories = [
   {
@@ -50,8 +53,35 @@ const MenuSection = () => {
   const cat = categories[active];
 
   return (
-    <section id="menu" className="py-20 md:py-28 bg-[#1a1209]">
-      <div className="container mx-auto px-4 p-4 md:border border-[#c8a97e]/30 rounded-lg">
+    <section id="menu" className="relative py-20 md:py-28 flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0">
+      <img
+        src={MenuBg}
+        alt="Urban Fork restaurant dishes"
+        className="w-full h-full object-cover"
+        width={1920}
+        height={1080}
+      />
+      <div className="absolute inset-0 bg-foreground/60" />
+    </div>
+      <div className="container mx-auto px-4 p-8 bg-[#1a1209] md:border border-[#c8a97e]/30 relative z-5 overflow-hidden">
+      <div className="relative">
+  <img
+    src={BurgerIcon}
+    alt="BurgerIcon"
+    className="absolute top-[-200px] right-[-660px] w-26 h-26 opacity-60 pointer-events-none select-none"
+  />
+  <img
+    src={DrinkIcon}
+    alt="drink-icon"
+    className="absolute top-[200px] left-[-600px] w-26 h-26 opacity-60 pointer-events-none select-none"
+  />
+  <img
+    src={PastaIcon}
+    alt="drink-icon"
+    className="absolute top-[-200px] left-[-670px] w-26 h-26 opacity-60 pointer-events-none select-none"
+  />
+</div>
       <div className="p-2 border border-[#c8a97e]/15 rounded-lg">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -74,8 +104,8 @@ const MenuSection = () => {
               onClick={() => setActive(i)}
               className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 font-body ${
                 i === active
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-primary/10"
+                  ? "bg-[#c8a97e]/70 text-primary-foreground"
+                  : "bg-secondary text-secondary-foreground hover:bg-[#c8a97e]/10"
               }`}
             >
               {c.name}
