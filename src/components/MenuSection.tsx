@@ -53,12 +53,12 @@ const MenuSection = () => {
   const cat = categories[active];
 
   return (
-    <section id="menu" className="relative py-20 md:py-28 flex items-center justify-center overflow-hidden">
+    <section id="menu" className="relative py-20 md:py-28 flex items-center overflow-hidden justify-center">
       <div className="absolute inset-0">
       <img
         src={MenuBg}
         alt="Urban Fork restaurant dishes"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover select-none"
         width={1920}
         height={1080}
       />

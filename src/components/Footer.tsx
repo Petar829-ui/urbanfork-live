@@ -1,26 +1,46 @@
 import { Globe, Heart, MessageCircle, MapPin, Phone, Clock } from "lucide-react";
+import footerBG from "@/assets/footerBG.svg";
+import ftdrink from "@/assets/ftdrink.svg";
+import ftburger from "@/assets/ftburger.svg";
 
 const Footer = () => (
-  <footer className="bg-foreground text-primary-foreground py-16">
-    <div className="container mx-auto px-4">
+  <footer className=" relative bg-[#521f00] border-t border-[#c8a97e]/20 flex items-center overflow-hidden justify-center text-primary-foreground py-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+    <div
+  className="absolute -inset-[3px] bg-cover bg-center bg-no-repeat"
+  style={{ backgroundImage: `url(${footerBG})` }}
+/>
+<img
+            src={ftburger}
+            alt=""
+            draggable={false}
+            className="absolute hidden lg:block top-[-200px] right-[-50px] translate-x-1/2 w-full h-[800px] opacity-20 pointer-events-none select-none"
+          />
+
+          <img
+            src={ftdrink}
+            alt=""
+            draggable={false}
+            className="absolute hidden lg:block top-[-200px] left-0px -translate-x-1/2 w-full h-[800px] opacity-20 pointer-events-none select-none"
+          />
+    <div className="container mx-auto px-4 relative z-10">
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         <div>
-          <h3 className="font-display text-2xl font-bold mb-4">
+          <h3 className="font-display text-3xl font-bold mb-4">
             Urban<span className="text-primary">Fork</span>
           </h3>
-          <p className="text-primary-foreground/60 font-body text-sm leading-relaxed">
+          <p className="text-primary-foreground/60 font-body text-xl leading-relaxed">
             Where bold flavors meet good company. Craft burgers, fresh pasta & signature drinks in the heart of Sofia.
           </p>
         </div>
 
         <div>
-          <h4 className="font-display text-lg font-semibold mb-4">Contact</h4>
+          <h4 className="font-display text-2xl font-semibold mb-4">Contact</h4>
           <div className="space-y-3 text-primary-foreground/60 font-body text-sm">
-            <div className="flex items-start gap-2">
+            <div className="flex items-start text-lg gap-2">
               <MapPin size={16} className="text-primary mt-0.5 flex-shrink-0" />
               <span>ul. Vitosha 42, Sofia 1000, Bulgaria</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center text-lg gap-2">
               <Phone size={16} className="text-primary flex-shrink-0" />
               <a href="tel:+35929876543" className="hover:text-primary transition-colors">+359 2 987 6543</a>
             </div>
@@ -28,8 +48,8 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-display text-lg font-semibold mb-4">Working Hours</h4>
-          <div className="space-y-2 text-primary-foreground/60 font-body text-sm">
+          <h4 className="font-display text-xl font-semibold mb-4">Working Hours</h4>
+          <div className="space-y-2 text-primary-foreground/60 font-body text-lg">
             <div className="flex items-center gap-2">
               <Clock size={16} className="text-primary flex-shrink-0" />
               <span>Mon – Thu: 11:00 – 23:00</span>
@@ -40,7 +60,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-display text-lg font-semibold mb-4">Follow Us</h4>
+          <h4 className="font-display text-xl font-semibold mb-4">Follow <span className="text-primary font-bold">Us</span></h4>
           <div className="flex gap-3">
             {[
               { icon: Heart, label: "Instagram", href: "#" },
@@ -57,14 +77,14 @@ const Footer = () => (
               </a>
             ))}
           </div>
-          <p className="text-primary-foreground/40 font-body text-xs mt-4">
+          <p className="text-primary-foreground/40 font-body text-lg mt-4">
             @urbanfork.sofia
           </p>
         </div>
       </div>
 
       <div className="border-t border-primary-foreground/10 pt-8 text-center">
-        <p className="text-primary-foreground/40 text-sm font-body">
+        <p className="text-primary-foreground/40 text-lg font-body">
           © 2026 Urban Fork. All rights reserved.
         </p>
       </div>
