@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { CalendarIcon, Users, User, Phone } from "lucide-react";
+import emailjs from "@emailjs/browser";
+
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -24,21 +26,42 @@ const ReservationSection = () => {
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState("2");
   const [customGuests, setCustomGuests] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!name || !phone || !date || !time) {
-      toast.error("Please fill in all fields.");
-      return;
-    }
-    toast.success(`Table reserved for ${name} on ${format(date, "PPP")} at ${time} for ${guests} guests!`);
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!name || !phone || !date || !time) {
+    toast.error("Please fill in all fields.");
+    return;
+  }
+
+  try {
+    await emailjs.send(
+      "service_1mhkxc7",
+      "template_mprnh8f",
+      {
+        name: name,
+        phone: phone,
+        date: format(date, "dd.MM.yyyy"),
+        time: time,
+        guests: guests,
+      },
+      "b4qlBidT9Wci2culJtmJq"
+    );
+
+    toast.success("Reservation sent successfully!");
+
     setName("");
     setPhone("");
     setDate(undefined);
     setTime("");
     setGuests("2");
-    setCustomGuests(false);
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error("Error sending reservation.");
+  }
+};
 
   return (
     <section id="reservation" className="py-20 md:py-28 bg-background">
@@ -139,7 +162,9 @@ const ReservationSection = () => {
               >
                 <option value="" disabled>Select time</option>
                 {timeSlots.map((t) => (
-                  <option key={t} value={t} className="text-foreground">{t}</option>
+                  <option key={t} value={t} className="text-foreground">
+                    {t}
+                  </option>
                 ))}
               </select>
             </div>
@@ -172,7 +197,9 @@ const ReservationSection = () => {
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary/30 transition-shadow appearance-none"
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                    <option key={n} value={n}>{n} {n === 1 ? "guest" : "guests"}</option>
+                    <option key={n} value={n}>
+                      {n} {n === 1 ? "guest" : "guests"}
+                    </option>
                   ))}
                   <option value="more">More +</option>
                 </select>
@@ -182,9 +209,10 @@ const ReservationSection = () => {
 
           <button
             type="submit"
-            className="w-full bg-primary text-primary-foreground py-4 rounded-full text-base font-semibold font-body hover:bg-[#C25416] active:bg-[#D97724] active:text-background hover:text-[#C0C0C0] transition-opacity hover:-translate-y-0.5 active:-translate-y-0 transition-transform duration-200 mt-2"
+            disabled={isSending}
+            className="w-full bg-primary text-primary-foreground py-4 rounded-full text-base font-semibold font-body hover:bg-[#C25416] active:bg-[#D97724] active:text-background hover:text-[#C0C0C0] transition-opacity hover:-translate-y-0.5 active:-translate-y-0 transition-transform duration-200 mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            Reserve Table
+            {isSending ? "Sending..." : "Reserve Table"}
           </button>
         </motion.form>
       </div>

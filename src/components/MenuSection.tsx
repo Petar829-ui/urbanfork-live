@@ -102,7 +102,7 @@ const MenuSection = () => {
             <button
               key={c.name}
               onClick={() => setActive(i)}
-              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 font-body ${
+              className={`px-5 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-200 font-body ${
                 i === active
                   ? "bg-[#c8a97e]/70 text-primary-foreground"
                   : "bg-secondary text-secondary-foreground hover:bg-[#c8a97e]/10"

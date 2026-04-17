@@ -56,7 +56,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-4 leading-tight"
+        className="font-display text-7xl md:text-8xl lg:text-9xl font-playfair italic text-primary-foreground mb-4 leading-tight"
       >
         Urban <span className="text-primary">Fork</span>
       </motion.h1>
@@ -64,10 +64,11 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-lg md:text-xl text-primary-foreground/80 font-body mb-8 max-w-lg mx-auto"
+        className="text-lg md:text-[1.45rem] text-primary-foreground/80 font-playfair font-[geist] mb-8 max-w-lg mx-auto"
       >
         Where bold flavors meet good company. Craft burgers, fresh pasta & signature drinks in the heart of Sofia.
       </motion.p>
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -86,6 +87,7 @@ const HeroSection = () => {
         >
           Reserve Table
         </a>
+        
       </motion.div>
 
        <div className="flex justify-center gap-2 mt-10">

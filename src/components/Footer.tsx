@@ -9,18 +9,18 @@ const Footer = () => (
   className="absolute -inset-[3px] bg-cover bg-center bg-no-repeat"
   style={{ backgroundImage: `url(${footerBG})` }}
 />
-<img
+         <img
             src={ftburger}
             alt=""
             draggable={false}
-            className="absolute hidden lg:block top-[-200px] right-[-50px] translate-x-1/2 w-full h-[800px] opacity-20 pointer-events-none select-none"
+            className="absolute top-[-200px] right-[50px] md:right-[50px] translate-x-1/2 w-[900px] md:w-[1000px] lg:w-[1100px] h-[800px] max-w-none opacity-10 md:opacity-20 pointer-events-none select-none"
           />
 
           <img
             src={ftdrink}
             alt=""
             draggable={false}
-            className="absolute hidden lg:block top-[-200px] left-0px -translate-x-1/2 w-full h-[800px] opacity-20 pointer-events-none select-none"
+            className="absolute top-[150px] md:top-[-200px] left-[50px] md:left-0px -translate-x-1/2 w-[900px] md:w-[1000px] lg:w-[1100px] h-[800px] max-w-none opacity-10 md:opacity-20 pointer-events-none select-none"
           />
     <div className="container mx-auto px-4 relative z-10">
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
