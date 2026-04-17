@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { CalendarIcon, Users, User, Phone } from "lucide-react";
@@ -28,7 +28,7 @@ const ReservationSection = () => {
   const [customGuests, setCustomGuests] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
-const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: FormEvent) => {
   e.preventDefault();
 
   if (!name || !phone || !date || !time) {
