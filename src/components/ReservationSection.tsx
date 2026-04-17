@@ -43,7 +43,7 @@ const ReservationSection = () => {
       {
         name: name,
         phone: phone,
-        date: format(date, "dd.MM.yyyy"),
+        date: date ? format(date, "dd.MM.yyyy") : "",
         time: time,
         guests: guests,
       },
