@@ -41,13 +41,14 @@ const handleSubmit = async (e: React.FormEvent) => {
   try {
     await emailjs.send(
       "service_1mhkxc7",
-      "template_mprnh8f",
+      "template_1fvwbwi",
       {
         name: name,
         phone: phone,
         date: date ? format(date, "dd.MM.yyyy") : "",
         time: time,
         guests: guests,
+        message: "Нова резервация от сайта",
       },
       "b4qlBidT9Wci2culJtmJq"
     );
