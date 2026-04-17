@@ -28,13 +28,15 @@ const ReservationSection = () => {
   const [customGuests, setCustomGuests] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
- const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
   if (!name || !phone || !date || !time) {
     toast.error("Please fill in all fields.");
     return;
   }
+
+  setIsSending(true);
 
   try {
     await emailjs.send(
@@ -57,9 +59,11 @@ const ReservationSection = () => {
     setDate(undefined);
     setTime("");
     setGuests("2");
+    setIsSending(false);
   } catch (error) {
     console.error(error);
     toast.error("Error sending reservation.");
+    setIsSending(false);
   }
 };
 
