@@ -30,45 +30,52 @@ const ReservationSection = () => {
   const [customGuests, setCustomGuests] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
-    e.preventDefault();
+async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
+  e.preventDefault();
 
-    if (!name || !phone || !date || !time) {
-      toast.error("Please fill in all fields.");
-      return;
-    }
-
-    setIsSending(true);
-
-    try {
-      await emailjs.send(
-        "service_1mhkxc7",
-        "template_1fvwbwi",
-        {
-          name: name,
-          phone: phone,
-          date: date ? format(date, "dd.MM.yyyy") : "",
-          time: time,
-          guests: guests,
-          message: "Нова резервация от сайта",
-        },
-        "b4qlBidT9Wci2culJtmJq"
-      );
-
-      toast.success("Reservation sent successfully!");
-
-      setName("");
-      setPhone("");
-      setDate(undefined);
-      setTime("");
-      setGuests("2");
-      setIsSending(false);
-    } catch (error) {
-      console.error(error);
-      toast.error("Error sending reservation.");
-      setIsSending(false);
-    }
+  if (!name || !phone || !date || !time) {
+    toast.error("Please fill in all fields.");
+    return;
   }
+
+  setIsSending(true);
+
+  try {
+    const result = await emailjs.send(
+      "service_1mhkxc7",
+      "template_1fvwbwi",
+      {
+        name,
+        phone,
+        date: format(date, "dd.MM.yyyy"),
+        time,
+        guests,
+        message: "Нова резервация от сайта",
+      },
+      "zZUSbhRS1OQii1Xui"
+    );
+
+    console.log("EMAILJS SUCCESS:", result);
+    toast.success("Reservation sent successfully!");
+
+    setName("");
+    setPhone("");
+    setDate(undefined);
+    setTime("");
+    setGuests("2");
+    setCustomGuests(false);
+  } catch (error: any) {
+    console.error("EMAILJS ERROR:", error);
+    console.error("STATUS:", error?.status);
+    console.error("TEXT:", error?.text);
+    console.error("FULL STRING:", JSON.stringify(error, null, 2));
+
+    toast.error(error?.text || "Error sending reservation.");
+  } finally {
+    setIsSending(false);
+  }
+}
+
   return (
     <section id="reservation" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4">
