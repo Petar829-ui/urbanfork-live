@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
@@ -28,46 +30,45 @@ const ReservationSection = () => {
   const [customGuests, setCustomGuests] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
-const handleSubmit = async (e: FormEvent) => {
-  e.preventDefault();
+  async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
+    e.preventDefault();
 
-  if (!name || !phone || !date || !time) {
-    toast.error("Please fill in all fields.");
-    return;
+    if (!name || !phone || !date || !time) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      await emailjs.send(
+        "service_1mhkxc7",
+        "template_1fvwbwi",
+        {
+          name: name,
+          phone: phone,
+          date: date ? format(date, "dd.MM.yyyy") : "",
+          time: time,
+          guests: guests,
+          message: "Нова резервация от сайта",
+        },
+        "b4qlBidT9Wci2culJtmJq"
+      );
+
+      toast.success("Reservation sent successfully!");
+
+      setName("");
+      setPhone("");
+      setDate(undefined);
+      setTime("");
+      setGuests("2");
+      setIsSending(false);
+    } catch (error) {
+      console.error(error);
+      toast.error("Error sending reservation.");
+      setIsSending(false);
+    }
   }
-
-  setIsSending(true);
-
-  try {
-    await emailjs.send(
-      "service_1mhkxc7",
-      "template_1fvwbwi",
-      {
-        name: name,
-        phone: phone,
-        date: date ? format(date, "dd.MM.yyyy") : "",
-        time: time,
-        guests: guests,
-        message: "Нова резервация от сайта",
-      },
-      "b4qlBidT9Wci2culJtmJq"
-    );
-
-    toast.success("Reservation sent successfully!");
-
-    setName("");
-    setPhone("");
-    setDate(undefined);
-    setTime("");
-    setGuests("2");
-    setIsSending(false);
-  } catch (error) {
-    console.error(error);
-    toast.error("Error sending reservation.");
-    setIsSending(false);
-  }
-};
-
   return (
     <section id="reservation" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4">
